@@ -79,3 +79,32 @@ for (var i = 0; i < cards.length; i++) {
   rejectedBtnCard.onclick = function () {
     var parent = this.parentElement.parentElement;
     var badge = parent.querySelector("span");
+       parent.setAttribute("data-status", "rejected");
+    badge.innerText = "REJECTED";
+    badge.className = "inline-block mt-3 text-xs px-3 py-1 bg-red-100 text-red-600 rounded-md";
+    updateCounts();
+  };
+
+  deleteBtn.onclick = function () {
+  var card = this.parentElement;
+
+  while (!card.classList.contains("job-card")) {
+    card = card.parentElement;
+  }
+
+  card.remove();
+  updateCounts();
+};
+}
+allBtn.onclick = function () {
+  filterJobs("all");
+};
+
+interviewBtn.onclick = function () {
+  filterJobs("interview");
+};
+
+rejectedBtn.onclick = function () {
+  filterJobs("rejected");
+};
+updateCounts();
